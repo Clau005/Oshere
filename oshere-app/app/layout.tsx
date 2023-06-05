@@ -1,6 +1,7 @@
 import SupabaseProvider from '@/providers/SupabaseProvider'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import UserProvider from '@/providers/UserProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SupabaseProvider>
-      <body className={inter.className}>{children}</body>
+        <UserProvider>
+          <body className={inter.className}>{children}</body>
+        </UserProvider>
       </SupabaseProvider>
     </html>
   )
