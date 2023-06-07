@@ -1,20 +1,21 @@
 {
   "name": "oshere-app",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "schemix": "tsx prisma/database/schemix.ts",
+    "schemix": "tsx database/schemix.ts",
     "push": "npx prisma db push",
     "reset": "npx prisma migrate reset --skip-seed",
     "seed": "npx prisma generate"
   },
   "prisma": {
-    "seed": "tsx prisma/database/seed/seed.ts",
-    "schema": "prisma/schema.prisma"
+    "seed": "tsx database/seed/seed.ts",
+    "schema": "database/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "prettier": "^3.0.0-alpha.6",
     "prisma": "^4.15.0",
-    "supabase": "^1.64.8"
+    "supabase": "^1.64.8",
+    "tsx": "^3.12.7"
   }
 }
