@@ -1,14 +1,19 @@
-import * as dotenv from "dotenv";
-import {createSchema} from "schemix";
+import * as  dotenv from 'dotenv';
+import {createSchema} from 'schemix';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(__filename);
 
 const DATABASE_SCHEMAS = (process.env.NEXT_PUBLIC_DATABASE_SCHEMAS ?? 'public').split(',');
-console.log('DATABASE_SSCHEMAS', DATABASE_SCHEMAS);
+console.log('DATABASE_SCHEMAS', DATABASE_SCHEMAS);
+console.log(dirname, 'dirname')
 createSchema({
 //base path should be a path to the folder containing models/, enums/ and mixins/.
 
-    basePath: __dirname,
+    basePath: dirname,
     datasource : {
         provider: 'postgresql',
         url: { env: 'DATABASE_URL'},
@@ -22,8 +27,9 @@ createSchema({
         },
         {
             name: 'fabrica',
-            provider: 'prisma-fabrica',
-            output: '/generated/factories'
+            provider: 'prisma-fabbrica',
+            output: '/generated/factories',
+            nonTranspile: true
         },
     ]
-}).export(__dirname, 'schema')
+}).export(dirname, 'schema')
