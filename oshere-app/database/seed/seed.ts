@@ -1,12 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 import seedData from './data';
+import seedSecurity from './security';
 
 const prisma = new PrismaClient
 
 async function main() {
     console.log('Start seeding...');
-    await seedData(prisma)
-    console.log('Finished seeding')
+    await seedSecurity(prisma);
+    await seedData(prisma);
+    console.log('Finished seeding');
 }
 
 
