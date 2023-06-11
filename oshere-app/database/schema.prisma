@@ -15,6 +15,16 @@ generator fabrica {
   nonTranspile = true
 }
 
+model User {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @database.Uuid
+  email     String
+  firstName String
+  lastName  String
+  metadata  Json?
+
+  @@schema("access")
+}
+
 model Product {
   id          String @id @default(dbgenerated("gen_random_uuid()")) @database.Uuid
   price       Int
